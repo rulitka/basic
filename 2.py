@@ -15,4 +15,4 @@ def odometer(N):
         distance_all += sum_distance
         return distance_all
     else:
-        print ("Exit")
+        exit()
