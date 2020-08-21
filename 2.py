@@ -9,8 +9,6 @@ def odometer(N):
             else:
                 time = N[index]
                 if N[index] == N[-1]:
-                    print (N[-1])
-                    print (N[-3])
                     time = N[-1] - N[-3]
                 distance = speed*time
                 sum_distance += distance
