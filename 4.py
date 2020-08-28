@@ -1,16 +1,12 @@
 def MadMax(N, Tele):
-    Tele_new = random.choices(Tele, k=N)
-    print (Tele_new)
+    Tele_new = random.sample(Tele, k=N)
     lst_new = []
     lst_curr = []
     Tele_new.sort()
-    print (Tele_new)
     center = int(len(Tele_new)/2)
-    print (center)
     max_element = max(Tele_new)
     max_idx = Tele_new.index(max_element)
     Tele_new[max_idx], Tele_new[center] = Tele_new[center], Tele_new[max_idx]
-    print (Tele_new)
     for i in range(len(Tele_new)):
         if i <= center:
             lst_new.append(Tele_new[i])
@@ -18,4 +14,3 @@ def MadMax(N, Tele):
             lst_curr.append(Tele_new[i])
     lst_curr.sort(reverse=1)
     joinedList = [*lst_new, *lst_curr]
-    print(joinedList)
