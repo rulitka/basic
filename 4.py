@@ -14,3 +14,4 @@ def MadMax(N, Tele):
             lst_curr.append(Tele_new[i])
     lst_curr.sort(reverse=1)
     joinedList = [*lst_new, *lst_curr]
+    return joinedList
