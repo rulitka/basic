@@ -1,5 +1,5 @@
 def SynchronizingTables(N, ids, salary):
-    if len(ids) == len(salary) == N:
+    while N:
         ids_2 = sorted(ids)
         salary_2 = sorted(salary)
         x = zip(ids_2,salary_2)
