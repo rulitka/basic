@@ -1,13 +1,10 @@
 def SynchronizingTables(N, ids, salary):
-    while N:
-        ids_2 = sorted(ids)
-        salary_2 = sorted(salary)
-        x = zip(ids_2,salary_2)
-        xs = sorted(x, key=lambda tup: tup[0])
-        lst_new = []
-        for item in range(len(ids)):
-            for i in range(len(xs)):
-                for j in range(len(xs[i])):
-                    if ids[item] == xs[i][j]:
-                        lst_new.append(xs[i][j+1])
-        return lst_new
+    ids_2 = sorted(ids)
+    salary_2 = sorted(salary)
+    x = list(zip(ids_2,salary_2))
+    lst_new = []
+    for item in range(N):
+        for i in range(N):
+            if ids[item] == x[i][0]:
+                lst_new.append(x[i][1])                           
+        return lst_new
