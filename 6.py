@@ -8,11 +8,13 @@ def PatternUnlock(N, hits):
             summ =+1
         else:
             numbers = [[6, 1, 9], [5, 2, 8], [4, 3, 7]]
-            for y in range(len(numbers)):
-                for j in range(len(numbers)):
-                    if numbers[y][j] == hits[i]:
-                        if numbers[y][j-1] == hits[i-1]:
-                            summ =+1
+            for row in numbers:
+                for x in row:
+                    if x == hits[i]:
+                        for x in row:
+                            if x == hits[i-1]:
+                                summ =+1
+                                break
                         else:
                             summ =+1.41421356237
         sum_all +=summ
