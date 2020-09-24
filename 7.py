@@ -33,15 +33,13 @@ def WordSearch(width, s, subs):
         while length > width:
             cur_s += 1
             length -= width
-            check(result,flag, cur_s)
             if flag:
                 result.append(1)
             else:
                 result.append(0)   
                  
         cur_s += 1
-        capacity -= length
-        check(result,flag, cur_s)  
+        capacity -= length 
         if flag:
                 result.append(1)
         else:
