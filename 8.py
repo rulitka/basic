@@ -1,4 +1,4 @@
-def SumofThe(N, data):
+def SumOfThe(N, data):
     d = N -1
     list1a=data[:d]
     list1b=data[d:]
@@ -11,4 +11,4 @@ def SumofThe(N, data):
 
 def shift(data):
     data[0:1] = [data.pop(),data[0]]
-    SumofThe(N, data)
+    SumOfThe(N, data)
