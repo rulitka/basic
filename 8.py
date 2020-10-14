@@ -1,14 +1,16 @@
 def SumOfThe(N, data):
-    d = N -1
-    list1a=data[:d]
-    list1b=data[d:]
-    summa = sum(list1a)
-    if summa == list1b[0]:
-        return summa
-    else:
-        shift(data)
-
-
-def shift(data):
-    data[0:1] = [data.pop(),data[0]]
-    SumOfThe(N, data)
+    for i in data:
+        print (i)
+        theSum = 0
+        count = 0
+        for j in data:
+            if i == j:
+                if count == 0:
+                    count += 1
+                    continue
+                if count >= 1:
+                    theSum = theSum + j  
+            else:
+                theSum = theSum + j
+        if theSum == i:
+            return theSum
