@@ -42,7 +42,8 @@ def TheRabbitsFoot(s, encode):
                 for j in range(M+1):
                     my_string += new_box[j][i]
                 my_string += ' '
-        result = my_string.replace("0", '')
+        my_1 = my_string.replace("0", '')
+        result = my_1[:-1]
         return result
 
     if encode == False:
