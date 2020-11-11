@@ -13,11 +13,12 @@ def MassVote(N, Votes):
     if precent_res > 50:
         index_el = Votes.index(mx)
         number_of_candidate = index_el + 1
-        print ('majority winner {}'.format(number_of_candidate))
+        result = 'majority winner {}'.format(number_of_candidate)
     if precent_res <= 50:
         if n <= 1:
             index_el = Votes.index(mx)
             number_of_candidate = index_el + 1
-            print('minority winner {}'.format(number_of_candidate))
+            result = 'minority winner {}'.format(number_of_candidate)
         else:
-            print('no winner')
+            result = 'no winner'
+    return result
