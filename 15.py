@@ -14,18 +14,21 @@ def TankRush(H1, W1, S1, H2, W2, S2):
                 new_storke += S1[i]
                 number += 1
             if number == W2:
-                if  new_storke == result_S2[lumber]:
-                    tmp.append(new_storke)
-                    if lumber < W2 - 1:
-                        lumber += 1
-                    if lumber == W2 - 1:
+                if len(result_S2) == len(tmp):
+                    break
+                else:
+                    if  new_storke == result_S2[lumber]:
+                        tmp.append(new_storke)
+                        if lumber < W2 - 1:
+                            lumber += 1
+                        if lumber == W2 - 1:
+                            new_storke = remove_character(new_storke, 0)
+                            number = 1
+                            continue
+                    else:
                         new_storke = remove_character(new_storke, 0)
                         number = 1
                         continue
-                else:
-                    new_storke = remove_character(new_storke, 0)
-                    number = 1
-                    continue
     if result_S2 == tmp:
         return True
     else:
