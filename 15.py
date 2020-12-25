@@ -1,70 +1,76 @@
 def TankRush(H1, W1, S1, H2, W2, S2):
-    tmp = []
-    new_string = ''
-    number_of_elem_new_string = 0
-    index_of_elem_result_S2 = 0
     pre_result_S1 = create_matrix(H1, W1, S1)
-    result_S1 = ' '.join(pre_result_S1)
-    result_S2 = create_matrix(H2, W2, S2)
-    len_result_S2 = len(result_S2)
-    Flag = False
-    for i in range(len(result_S1)):
-        if result_S1[i] == ' ':
-            new_string = ''
-            number_of_elem_new_string = 0
-            continue                    
-        else:
-            if Flag == False:
-                convert_element = result_S2[index_of_elem_result_S2]
-                simbols = get_simbols(convert_element)
+    print(pre_result_S1)
+    pre_result_S2 = create_matrix(H2, W2, S2)
+    print(pre_result_S2)
+    tmp = [[0] * W2 for i in range(H2)] #создаем временный массив
+    x = 0
+    y = 0
+    num = 0
+    lum = 0
+    for i in range(len(pre_result_S1)): 
+        for j in range(len(pre_result_S1[i])):
+            print(pre_result_S1[i][j])
+            print(pre_result_S2[x][y])
+            if pre_result_S2 == tmp:
+                break
             else:
-                pass
-            new_string += result_S1[i]
-            number_of_elem_new_string += 1
-            if number_of_elem_new_string < simbols:
-                Flag = True
-                continue
-            if number_of_elem_new_string == simbols:
-                if len(result_S2) == len(tmp):
-                    break
-                else:
-                    if  new_string == result_S2[index_of_elem_result_S2]:
-                        tmp.append(new_string)
-                        new_string = ''
-                        number_of_elem_new_string -= 1
-                        if index_of_elem_result_S2 < len_result_S2 - 1:
-                            index_of_elem_result_S2 += 1
-                            Flag = False
-                        if index_of_elem_result_S2 == len_result_S2 - 1:
-                            continue   
+                if pre_result_S1[i][j] == pre_result_S2[x][y]:
+                    tmp = check_matrix(i, j, pre_result_S1, pre_result_S2, H2, W2, tmp)
+                    if pre_result_S2 == tmp:
+                    	break
                     else:
-                        new_string = remove_character(new_string, 0)
-                        number_of_elem_new_string -= 1
-                        Flag = True
                         continue
-    if result_S2 == tmp:
+                else:
+                    continue
+    if pre_result_S2 == tmp:
+        print(tmp)
         return True
     else:
         return False
-       
+
+
+def check_matrix(i, j, pre_result_S1, pre_result_S2, H2, W2, tmp):
+    ci = 0
+    cj = 0
+    a = (i, j)
+    number_of_elem_row = 0
+    number_of_H2 = 1          
+    while number_of_H2 <= H2:
+        if pre_result_S2 == tmp:
+            break
+        else:
+            if number_of_elem_row < W2:
+                tmp[ci][cj] = pre_result_S1[i][j]
+                number_of_elem_row += 1
+                cj += 1
+                j += 1
+                continue
+            if number_of_elem_row == W2:
+                ci += 1
+                cj = 0
+                i += 1
+                j = a[1]
+                number_of_elem_row = 0
+                number_of_H2 += 1
+    return tmp
+
+
 def create_matrix(H, W, S):
     result_S = []
-    result_S.append(str(H)) 
-    result_S.append(str(W))
-    S_n = S.split(" ")
-    for i in range(len(S_n)):
-        result_S.append(S_n[i])
+    result_S = [0] * H
+    a = 0
+    j = 0
+    for i in range(H):
+        result_S[i] = [0] * W
+    
+    for i in range(len(S)):
+        if S[i] == ' ':
+            a += 1
+            j = 0
+            pass
+        else:
+            result_S[a][j] = int(S[i])
+            j += 1
+            continue
     return result_S
-
-def remove_character(new_string, index):
-    s = list(new_string)
-    del s[0]
-    new_string = "".join(s)
-    return new_string 
-
-def get_simbols(convert_element):
-    string_element = str(convert_element)
-    simbols = 0
-    for i in range(len(string_element)):
-        simbols += 1
-    return simbols
