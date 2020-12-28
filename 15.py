@@ -12,6 +12,8 @@ def TankRush(H1, W1, S1, H2, W2, S2):
                 break
             else:
                 if pre_result_S1[i][j] == pre_result_S2[x][y]:
+                    if j == W1 - 1:
+                        break
                     tmp = check_matrix(i, j, pre_result_S1, pre_result_S2, H2, W2, tmp)
                     if pre_result_S2 == tmp:
                     	break
