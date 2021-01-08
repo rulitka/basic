@@ -1,7 +1,7 @@
 def MaximumDiscount(N, price):
     price.sort(reverse=True)
     if N < 3:
-        print('Вам скидка не положена')
+        max_discount = 0
     if N >= 3:
         new_massive = create_matrix(N, price)
         max_discount = get_max_discount(new_massive)
