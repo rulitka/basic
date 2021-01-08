@@ -12,10 +12,10 @@ def get_max_discount(new_massive):
     max_discount = 0
     for i in range(len(new_massive)):
         for j in range(len(new_massive[i])):
-        if j == 2:
-            max_discount += new_massive[i][j]
-        else:
-            continue
+            if j == 2:
+                max_discount += new_massive[i][j]
+            else:
+                continue
     return max_discount
 
 
