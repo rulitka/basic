@@ -45,6 +45,17 @@ def search_dubl(new_items):
             result = True
     return result
 
+def merge_string(inputStrNew):
+    for i in range(len(inputStrNew)):
+        inputStrNew[i][1] = str(inputStrNew[i][1])
+    return inputStrNew 
+
+def return_to_start(start_string):
+    end_string = []
+    for i in range(len(start_string)):
+        end_string.append(" ".join(start_string[i]))
+    return end_string
+
 
 def ShopOLAP(N, items):
     divide_it = divide_string(N, items)
@@ -54,4 +65,6 @@ def ShopOLAP(N, items):
         new_items = summ_elements(N, inputStrRes)
         result = search_dubl(new_items)
     inputStrNew = sortByLength(new_items)
-    return inputStrNew
+    start_string =  merge_string(inputStrNew)
+    end_string = return_to_start(start_string)
+    return end_string
