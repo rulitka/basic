@@ -33,7 +33,9 @@ def check_string(command):
     return elem
 
 
-def reset_history(history, position_in_history):
+def reset_history():
+    global history
+    global position_in_history
     history_new = []
     for i in range(len(history)):
         if i == position_in_history:
@@ -41,6 +43,7 @@ def reset_history(history, position_in_history):
         else:
             continue
     history = history_new
+    position_in_history = 0
     return history
 
 
@@ -54,11 +57,9 @@ def add_string(check_str, Flag):
         position_in_history += 1
     if Flag == True:
         final_string += check_str[1]
-        history = reset_history(history, position_in_history)
+        history = reset_history()
         history.append(final_string)
-        position_in_history -= 1
-    print(history)
-    print(position_in_history)
+        position_in_history += 1
     return final_string
 
 
@@ -77,19 +78,15 @@ def del_elements(check_str, Flag):
                 final_string = final_string[:-1]
                 n -= 1
             history.append(final_string)
-            position_in_history += 1
-    print(history)
-    print(position_in_history)      
+            position_in_history += 1     
     if Flag == True:
         n = check_str[1]
         while n:
             final_string = final_string[:-1]
             n -= 1
-        history = reset_history(history, position_in_history)
+        history = reset_history()
         history.append(final_string)
         position_in_history += 1
-    print(history)
-    print(position_in_history)
     return final_string
 
 
@@ -106,7 +103,7 @@ def get_index_element(check_str):
     return final_elem
 
 
-def del_position():
+def undo_position():
     global final_string
     global history
     global position_in_history
@@ -121,7 +118,7 @@ def del_position():
     return final_string
 
 
-def return_position(check_str):
+def redo_position(check_str):
     global final_string
     global history
     global position_in_history
@@ -143,9 +140,9 @@ def BastShoe(command):
         final_string = del_elements(check_str, Flag)
     if check_str[0] == 3:
         final_elem = get_index_element(check_str)
-    return final_elem
+        return final_elem
     if check_str[0] == 4:
-        final_string = del_position()
+        final_string = undo_position()
     if check_str[0] == 5:
-        final_string = return_position(check_str)
+        final_string = redo_position(check_str)
     return final_string
