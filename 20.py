@@ -57,6 +57,8 @@ def add_string(check_str, Flag):
         history = reset_history(history, position_in_history)
         history.append(final_string)
         position_in_history -= 1
+    print(history)
+    print(position_in_history)
     return final_string
 
 
@@ -75,7 +77,9 @@ def del_elements(check_str, Flag):
                 final_string = final_string[:-1]
                 n -= 1
             history.append(final_string)
-            position_in_history += 1       
+            position_in_history += 1
+    print(history)
+    print(position_in_history)      
     if Flag == True:
         n = check_str[1]
         while n:
@@ -84,19 +88,22 @@ def del_elements(check_str, Flag):
         history = reset_history(history, position_in_history)
         history.append(final_string)
         position_in_history += 1
+    print(history)
+    print(position_in_history)
     return final_string
 
 
 def get_index_element(check_str):
     global final_string
+    final_elem = ''
     index_el = check_str[1]
     len_str = len(final_string)
     if index_el > len_str:
-        final_string = ''
+        final_elem = ''
         exit
     else:
-        final_string = str(final_string[index_el])
-    return final_string
+        final_elem = str(final_string[index_el])
+    return final_elem
 
 
 def del_position():
@@ -128,13 +135,15 @@ def return_position(check_str):
 
 def BastShoe(command):
     check_str = check_string(command)
+    final_elem = ''
     global final_string
     if check_str[0] == 1:
         final_string = add_string(check_str, Flag)
     if check_str[0] == 2:
         final_string = del_elements(check_str, Flag)
     if check_str[0] == 3:
-        final_string = get_index_element(check_str)
+        final_elem = get_index_element(check_str)
+    return final_elem
     if check_str[0] == 4:
         final_string = del_position()
     if check_str[0] == 5:
