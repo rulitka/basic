@@ -92,7 +92,7 @@ def get_index_element(check_str):
     index_el = check_str[1]
     len_str = len(final_string)
     if index_el > len_str:
-        final_string = ' '
+        final_string = ''
         exit
     else:
         final_string = str(final_string[index_el])
