@@ -95,7 +95,7 @@ def get_index_element(check_str):
     final_elem = ''
     index_el = check_str[1]
     len_str = len(final_string)
-    if index_el > len_str:
+    if index_el >= len_str:
         final_elem = ''
         exit
     else:
