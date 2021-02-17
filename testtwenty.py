@@ -2,7 +2,12 @@ import unittest
 import twenty
 
 class MyTests(unittest.TestCase):
-    
+    def setUp(self):
+        twenty.final_string = ''
+        twenty.history = []
+        twenty.position_in_history = -1
+        twenty.Flag = False
+        
     def test_one(self):
         self.assertEqual(twenty.BastShoe('1 Привет'), 'Привет')
         self.assertEqual(twenty.BastShoe('1 , Мир!'), 'Привет, Мир!')
