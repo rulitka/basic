@@ -47,7 +47,8 @@ def reset_history():
     return history
 
 
-def add_string(check_str, Flag):
+def add_string(check_str):
+    global Flag
     global final_string
     global history
     global position_in_history
@@ -60,18 +61,20 @@ def add_string(check_str, Flag):
         history = reset_history()
         history.append(final_string)
         position_in_history += 1
+    Flag = False
     return final_string
 
 
-def del_elements(check_str, Flag):
+def del_elements(check_str):
     global final_string
     global history
     global position_in_history
+    global Flag
     if Flag == False:
         n = check_str[1]
         len_str = len(final_string)
         if n > len_str:
-            final_string = ' '
+            final_string = ''
             exit
         else:
             while n:
@@ -135,9 +138,9 @@ def BastShoe(command):
     final_elem = ''
     global final_string
     if check_str[0] == 1:
-        final_string = add_string(check_str, Flag)
+        final_string = add_string(check_str)
     if check_str[0] == 2:
-        final_string = del_elements(check_str, Flag)
+        final_string = del_elements(check_str)
     if check_str[0] == 3:
         final_elem = get_index_element(check_str)
         return final_elem
