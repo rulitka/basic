@@ -16,6 +16,27 @@ def rotateChar(in_put):
         string = ''.join([str(i) for i in temp_matrix])
     return string
 
+def rotateSyl(temp_matrix):
+    for i in range(1, len(temp_matrix), 2):
+        temp_matrix[i - 1], temp_matrix[i] = temp_matrix[i], temp_matrix[i - 1]
+        string = ''.join([str(i) for i in temp_matrix])
+    return string
+
+def divideSyl(in_put):
+    n = 0
+    two_sym = ''
+    one = []
+    i = 0
+    length_var = len(in_put)
+    while i < length_var - 1:
+        while n <= 1:
+            two_sym += in_put[i]
+            n += 1
+            i+= 1
+        one.append(two_sym)    
+        n = 0
+        two_sym = ''
+    return one
 
 def oddswap(in_put):
     temp_matrix = list(in_put)
@@ -41,6 +62,15 @@ def oddswap(in_put):
         full_matrix.append(string)
     return full_matrix
 
+def check_more(in_put, sort_string):
+    m = []
+    b = []
+    for i in range(len(sort_string)):
+        if sort_string[i] < in_put:
+            m.append(sort_string[i])
+        if sort_string[i] > in_put:
+            b.append(sort_string[i])
+    return b
 
 def BiggerGreater(in_put):
     new_string = ''
@@ -56,8 +86,12 @@ def BiggerGreater(in_put):
                 result = ''
         elif length_str > 2:
             new_string = oddswap(in_put) 
+            temp_matrix = divideSyl(in_put)
+            ss_new_str = rotateSyl(temp_matrix)
+            new_string.append(ss_new_str)
             sort_string = sorted(new_string)
-            result = sort_string[0]
+            b = check_more(in_put, sort_string)
+            result = b[0]
     elif checked_string == False:
         return result
     return result
