@@ -84,11 +84,12 @@ def TreeOfLife(H, W, N, tree):
             new_matrix = add_branches(new_matrix)
             new_matrix = delete_branches(new_matrix, H, W)
             years += 1
-    if years % 2 == 0:
-        new_matrix = add_branches(new_matrix)
-    if years % 2 != 0:
-        new_matrix = add_branches(new_matrix)
-        new_matrix = delete_branches(new_matrix, H, W)
+    if years == N:
+        if years % 2 == 0:
+            new_matrix = add_branches(new_matrix)
+        if years % 2 != 0:
+            new_matrix = add_branches(new_matrix)
+            new_matrix = delete_branches(new_matrix, H, W)
     pre_result = convert_to_symbol(new_matrix)
     result = convert_to_string(pre_result)
     return result
