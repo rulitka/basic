@@ -1,14 +1,14 @@
-def to_number(tree):
+def to_start(tree):
     new_matrix = []
     for i in range(len(tree)):
         new_matrix.append(list(tree[i]))
         for i in range(len(new_matrix)):
             for j in range(len(new_matrix[i])):
                 if new_matrix[i][j] == '+':
-                    new_matrix[i][j] = 1
-                if new_matrix[i][j] == '.':
                     new_matrix[i][j] = 0
-    return 	new_matrix
+                if new_matrix[i][j] == '.':
+                    new_matrix[i][j] = -1
+    return  new_matrix
 
 def add_branches(new_matrix):
     for i in range(len(new_matrix)):
@@ -56,8 +56,8 @@ def delete_branches(new_matrix, H, W):
                         new_matrix[i - 1][j] = 0
     return new_matrix
 
-def convert_to_symbol(new_matrix):
-    pre_result = new_matrix
+def convert_to_symbol(H, W, new_matrix):
+    pre_result = [[0]*W for i in range (H)]
     for i in range(len(new_matrix)):
         for j in range(len(new_matrix[i])):
             if new_matrix[i][j] > 0:
@@ -73,23 +73,33 @@ def convert_to_string(pre_result):
     return result
 
 def TreeOfLife(H, W, N, tree):
+    result = []
+    new_matrix = to_start(tree)
     years = 1
-    new_matrix = to_number(tree)
-    years += 1    
     while years < N:
         if years % 2 == 0:
             new_matrix = add_branches(new_matrix)
+            pre_result = convert_to_symbol(H, W, new_matrix)
+            post_result = convert_to_string(pre_result)
+            result.append(post_result)
             years += 1
         if years % 2 != 0:
             new_matrix = add_branches(new_matrix)
             new_matrix = delete_branches(new_matrix, H, W)
+            pre_result = convert_to_symbol(H, W, new_matrix)
+            post_result = convert_to_string(pre_result)
+            result.append(post_result)
             years += 1
     if years == N:
         if years % 2 == 0:
             new_matrix = add_branches(new_matrix)
+            pre_result = convert_to_symbol(H, W, new_matrix)
+            post_result = convert_to_string(pre_result)
+            result.append(post_result)
         if years % 2 != 0:
             new_matrix = add_branches(new_matrix)
             new_matrix = delete_branches(new_matrix, H, W)
-    pre_result = convert_to_symbol(new_matrix)
-    result = convert_to_string(pre_result)
+            pre_result = convert_to_symbol(H, W, new_matrix)
+            post_result = convert_to_string(pre_result)
+            result.append(post_result)  
     return result
