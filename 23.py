@@ -8,7 +8,7 @@ def to_number(tree):
                     new_matrix[i][j] = 1
                 if new_matrix[i][j] == '.':
                     new_matrix[i][j] = 0
-    return 	new_matrix
+    return  new_matrix
 
 def add_branches(new_matrix):
     for i in range(len(new_matrix)):
@@ -22,37 +22,73 @@ def delete_branches(new_matrix, H, W):
                 if new_matrix[i][j] >= 3:
                     new_matrix[i][j] = 0
                     if i == 0 and j == 0:
-                        new_matrix[i][j + 1] = 0
-                        new_matrix[i + 1][j] = 0
+                        if new_matrix[i][j + 1] >= 3:
+                            new_matrix[i][j + 1] = 3
+                        else:
+                            new_matrix[i][j + 1] = 0
+                        if new_matrix[i + 1][j] >= 3:
+                            new_matrix[i + 1][j] = 3
+                        else:
+                            new_matrix[i + 1][j] = 0
                     elif i == 0 and j < W - 1:
-                        new_matrix[i][j + 1] = 0
+                        if new_matrix[i][j + 1] >= 3:
+                            new_matrix[i][j + 1] = 3
+                        else:
+                            new_matrix[i][j + 1] = 0
                         new_matrix[i][j - 1] = 0
-                        new_matrix[i + 1][j] = 0
+                        if new_matrix[i + 1][j] >= 3:
+                            new_matrix[i + 1][j] = 3
+                        else:
+                            new_matrix[i + 1][j] = 0
                     elif i == 0 and j == W - 1:
                         new_matrix[i][j - 1] = 0
-                        new_matrix[i + 1][j] = 0
+                        if new_matrix[i + 1][j] >= 3:
+                            new_matrix[i + 1][j] = 3
+                        else:
+                            new_matrix[i + 1][j] = 0
                     elif i < H - 1 and j == 0:
-                        new_matrix[i][j + 1] = 0
-                        new_matrix[i + 1][j] = 0
+                        if new_matrix[i][j + 1] >= 3:
+                            new_matrix[i][j + 1] = 3
+                        else:
+                            new_matrix[i][j + 1] = 0
+                        if new_matrix[i + 1][j] >= 3:
+                            new_matrix[i + 1][j] = 3
+                        else:
+                            new_matrix[i + 1][j] = 0
                         new_matrix[i - 1][j] = 0
                     elif i == H - 1 and j == 0:
-                        new_matrix[i][j + 1] = 0
+                        if new_matrix[i][j + 1] >= 3:
+                            new_matrix[i][j + 1] = 3
+                        else:
+                            new_matrix[i][j + 1] = 0
                         new_matrix[i - 1][j] = 0
                     elif i == H - 1 and j != W - 1:
                         new_matrix[i][j - 1] = 0
-                        new_matrix[i ][j + 1] = 0
+                        if new_matrix[i][j + 1] >= 3:
+                            new_matrix[i][j + 1] = 3
+                        else:
+                            new_matrix[i][j + 1] = 0
                         new_matrix[i - 1][j] = 0
                     elif i != H - 1 and j == W - 1:
-                        new_matrix[i + 1][j] = 0
+                        if new_matrix[i + 1][j] >= 3:
+                            new_matrix[i + 1][j] = 3
+                        else:
+                            new_matrix[i + 1][j] = 0
                         new_matrix[i][j - 1] = 0
                         new_matrix[i - 1][j] = 0
                     elif i == H - 1 and j == W - 1:
                         new_matrix[i][j - 1] = 0
                         new_matrix[i - 1][j] = 0
                     else:
-                        new_matrix[i][j + 1] = 0
+                        if new_matrix[i][j + 1] >= 3:
+                            new_matrix[i][j + 1] = 3
+                        else:
+                            new_matrix[i][j + 1] = 0
                         new_matrix[i][j - 1] = 0
-                        new_matrix[i + 1][j] = 0
+                        if new_matrix[i + 1][j] >= 3:
+                            new_matrix[i + 1][j] = 3
+                        else:
+                            new_matrix[i + 1][j] = 0
                         new_matrix[i - 1][j] = 0
     return new_matrix
 
@@ -76,7 +112,7 @@ def TreeOfLife(H, W, N, tree):
     M = N + 1
     years = 1
     new_matrix = to_number(tree)
-    years += 1    
+    years += 1
     while years < M:
         if years % 2 == 0:
             new_matrix = add_branches(new_matrix)
