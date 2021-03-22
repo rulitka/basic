@@ -74,7 +74,6 @@ def convert_to_string(pre_result):
 
 def TreeOfLife(H, W, N, tree):
     M = N + 1
-    result = []
     years = 1
     new_matrix = to_number(tree)
     years += 1    
@@ -94,5 +93,4 @@ def TreeOfLife(H, W, N, tree):
             new_matrix = delete_branches(new_matrix, H, W)
     pre_result = convert_to_symbol(new_matrix)
     post_result = convert_to_string(pre_result)
-    result.append(post_result)
-    return result
+    return post_result
