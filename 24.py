@@ -69,4 +69,6 @@ def MatrixTurn(Matrix, M, N, T):
     while  n <= T - 1:
         pre_result = rotateMatrix(mat)
         n += 1
-        Matrix = convert_to_string(pre_result, M, N)
+        result = convert_to_string(pre_result, M, N)
+        for i in range(M):
+            Matrix[i] = result[i]
