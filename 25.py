@@ -1,17 +1,20 @@
 def S(A):
     B = []
-    count = 0
-    largest = 0
-    for i in range(len(A) - 1):
-        for j in range (len(A) - i - 1):
+    largest = 0 
+    for i in range(len(A)):      
+        for j in range (len(A) - i):
             k = i + j
-            for j in range(k):
-                if count == 0:
-                    largest = A[i]
-                if A[i] > largest:
-                    largest = A[i]
-        B.append(largest)   
-    return B  
+            for z in range(j, k + 1):
+                if z == j:
+                    largest = A[j]
+                else:
+                    if A[z] > largest:
+                        largest = A[z]
+            if largest != 0:
+                B.append(largest)
+            else:
+                pass
+    return B 
 
 def TransformTransform(A, N):
     first_transform = S(A)
