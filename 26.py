@@ -1,23 +1,24 @@
+def combinations(N, left, right, toClose, str=""):
+    if toClose < 0 or toClose > N or left < 0 or right < 0:
+        return
+
+    if left + right < 1:
+        combs.append(str)
+        return
+
+    for s in ['(', ')']:
+        str += s
+        if s == '(':
+            combinations(N, left - 1, right, toClose + 1, str)
+        else:
+            combinations(N, left, right - 1, toClose - 1, str)
+        str = str[:-1]
+    return
+
+
 def BalancedParentheses(N):
-    a = []
-    n = 0
-    while n <= N - 1:
-        a.insert(-1, ')')
-        a.insert(0, '(')
-        n += 1
-    b = []
-    k = 0
-    for i in range(N*2):
-        if i % 2 == 0:
-            new_element = ('(')
-            b.append(new_element)
-        if i % 2 != 0:
-            new_element = (')')
-            b.append(new_element)
-    ta = ''.join(a)
-    tb = ''.join(b)
-    if ta == tb:
-        d = ta
-    else:
-        d = ta + ' ' + tb
-    return d
+    global combs
+    combs = []
+    combinations(N, left = N, right = N, toClose = 0, str="")
+    result = ' '.join(combs)
+    return result
