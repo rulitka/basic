@@ -134,9 +134,9 @@ def Football(F, N):
                 if F[i] < F[i - 1]:
                     n += 1
                 if F[i] > F[i - 1]:
-                    pass
+                    pass        
         if n < 2:
-            Flag = False
+            temp_result = F
         if n == 2:
             temp_result = rule_one(F)
         if n > 2:
