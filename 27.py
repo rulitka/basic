@@ -63,10 +63,32 @@ def rule_one(F):
     return F_new
 
 def rule_two(F):
-    for i in range(len(F) // 2):
-        tmp = F[i]
-        F[i] = F[len(F) - i - 1]
-        F[len(F) - i - 1] = tmp
+    length = len(F)
+    n = []
+    for i in range(length):
+        if F[i]!= F[-1]:
+            if F[i] < F[i + 1]:
+                if F[i] < F[i - 1]:
+                    if F[i] != F[0]:
+                        n.append(i)
+                    if F[i] == F[0]:
+                        continue
+                if F[i] > F[i - 1]:
+                    continue
+            if F[i] > F[i + 1]:
+                n.append(i)
+        if F[i] == F[-1]:
+            if F[i] < F[i - 1]:
+                n.append(i)
+            if F[i] > F[i - 1]:
+                if F[i - 1] < F[i - 1]:
+                    n.append(i - 1)
+                if F[i] > F[i - 1]:
+                    continue
+    for i in range(len(n) // 2):
+        tmp = F[n[i]]
+        F[n[i]] = F[n[-1] - i]
+        F[n[-1] -i] = tmp
     return F
 
 def isMonotonic(A):  
@@ -135,19 +157,23 @@ def Football(F, N):
                     n += 1
                 if F[i] > F[i - 1]:
                     pass        
-        if n < 2:
-            temp_result = F
-        if n == 2:
-            temp_result = rule_one(F)
-        if n > 2:
-            half_result = check_monotone(F)
-            if half_result is True:
-                temp_result = sorted(F)
-            if half_result is False:
-                temp_result = F	
+        if n == 0:
+            result = False
+        if n != 0:
+            if n < 2:
+                temp_result = F
+            if n == 2:
+                temp_result = rule_one(F)
+            if n > 2:
+                half_result = check_monotone(F)
+                if half_result is True:
+                    temp_result = rule_two(F)
+                if half_result is False:
+                    temp_result = F
+            result = check_past(temp_result)
     if F[0] > F[1]:
         temp_result = rule_two(F)
-    result = check_past(temp_result)
+        result = check_past(temp_result)
     if result is True:
         Flag = True
     if result is False:
